@@ -1,0 +1,96 @@
+\documentclass[utf8,a4paper]{ctexart}
+\setCJKmainfont[ItalicFont={KaiTi},BoldFont={SimHei}]{SimSun}
+\setCJKsansfont{SimHei}
+\setCJKmonofont{FangSong}
+\usepackage{graphicx}
+\usepackage[top=30mm,left=3.0cm,bottom=2.5cm,right=2.5cm]{geometry}
+
+\usepackage{listings}	源代码
+\usepackage{booktabs}
+
+% Title Page
+\title{Experiment Report of Computer Architecture}
+\author{Lei Zungjyun 李颂元 21321293 Anqing-Zhao 赵安清 21321047}
+
+\begin{document}
+\maketitle
+
+\section{Topic}
+[5] Build a New Linux Kernel Image(3.12) for ARM ISA in gem5 FS Mode.
+
+\section{Introduce}
+	\subsection{Steps}
+		\begin{enumerate}
+			\item
+			Install requisite packages.
+			\item
+			Download gem5 and compile it for ARM (gem5.opt).
+			\item
+			Download Linux kernel and cross-compile it for ARM.
+			\item
+			Configur M5\_DIR (vmlinux-3.12, linux-arm-ael.img).
+			\item
+			Run and test (m5term).
+		\end{enumerate}
+		
+	\subsection{Hardware}
+	We use a computer in lab to compile Linux and run gem5 for testing new-version Linux. The machine's performance is a bit low, so it brings some trouble to us.
+		\begin{enumerate}
+			\item
+			Device: Optiplex GX620.
+			\item
+			OS: Ubuntu 13.04.
+		\end{enumerate}
+
+\section{Obstacles}
+	\subsection{Compile Errors}
+	Some compile errors as following.
+		\subsubsection{gem5}
+			\begin{enumerate}
+				\item
+				Inadequate DRAM.
+				\item
+				scons build/ARM/gem5.opt -j2.
+			\end{enumerate}
+		\subsubsection{Kernel}
+			\begin{enumerate}
+				\item
+				make ARCH=arm O=PATH menuconfig.
+				\item
+				make ARCH=arm CROSS\_COMPILE=arm-linux-gnueabi-O=PATH vmlinux-3.12.
+				\item
+				Prerequisite.
+			\end{enumerate}
+			
+	\subsection{Runtime Errors}
+	Some runtime errors as following.
+		\subsubsection{gem5}
+			\begin{enumerate}
+				\item
+				SE mode runs smoothly.
+			\end{enumerate}
+		\subsubsection{Kernel}
+			\begin{enumerate}
+				\item
+				–mem-size.
+				\item
+				–kernel.
+				\item
+				–disk-image.		
+			\end{enumerate}
+
+\section{Solution}
+We have no much experience in compiling a new-version Linux for ARM. During studying and trying, we countered various problem and wierd situation. To find answer, effective methods used as following.
+	\begin{enumerate}
+		\item
+		Classification: Tutorials.
+		\item
+		Index: Google.
+		\item
+		Compromise: Documentation and videos.
+	\end{enumerate}
+	
+\section{Cooperation}
+This topic is hardly divide-and-conquering. we discuss and solve the problem together and get the ideal result eventually.
+
+\end{document}
