@@ -24,7 +24,7 @@
 \maketitle
 
 \begin{abstract}
-This article is an experiment report of the computer architecture course. 
+This article is an experiment report of the course of computer architecture. We introduce the experiment topic, state the problems we faced to, and give the solutions to them.
 \end{abstract}
 
 \section{Introduction}
@@ -64,7 +64,7 @@ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- O=PATH vmlinux-3.12
 Then, we can configure the M5\_DIR, which contains kernel image (vmlinux-3.12) and disk image (linux-arm-ael.img). Finally, we can run the new kernel on gem5 and check it with m5term, which is a virtual terminal of gem5.
 		
 	\subsection{Environment}
-	We use a computer in our lab to compile Linux and run gem5 for testing new-version Linux. The machine's performance is a bit low, so it brings some trouble to us. \autoref{tab:env} shows our environment.
+	We used a computer in our lab. The machine performs a little bit slow and therefore it brought some troubles to us. \autoref{tab:env} shows our environment.
 
 \begin{table}[htbp]
 	\caption{Hardware and operating system}\label{tab:env}
@@ -85,25 +85,26 @@ Then, we can configure the M5\_DIR, which contains kernel image (vmlinux-3.12) a
 \end{table}
 
 \section{Obstacles and Solutions}
-We face to problems as soon as we start to do the experiment.
+We faced to problems as soon as we started to do the experiment.
 	\subsection{Compiling Errors}
 		\subsubsection{gem5}
-The first time we build gem5, we use
+The first time we built gem5, we used command
 \begin{lstlisting}[language=bash, frame=shadowbox]
 scons build/ARM/gem5.opt -j2.
 \end{lstlisting}
-to obtain the thread-level parallelization, but the system got stuck. We opened the system monitor and we found that the 2GB-DRAM was used out and the swapping area was also used out. This meaned the compiling of gem5 is memory-intensive and therefore we compiled it serially. This turn, the DRAM was used out again but the swapping area was not. Finally, the compiling was finished, although the compiling time was nearly one hour and a half.
+to benifit from the multicore, but the system got stuck. We opened the system monitor and we found that the 2GB-DRAM was used out and the swapping area was also used out. This meaned the compiling of gem5 is memory-intensive and therefore we compiled it serially. This turn, the DRAM was used out again but the swapping area was not. Finally, the compiling was finished, although the compiling time was nearly one hour and a half.
 		\subsubsection{Kernel}
-			As we said in the \autoref{text:steps}, we shold notice the cross-compiling.  The documentation of the Linux kernel warned us that if we do not install the prerequisite packages first, we will fall in a trap that we can not turn back, so we should check the necessary packages seriously before we build the kernel.
+			As we said in the \autoref{text:steps}, we shold notice the cross-compiling.  In addition, the documentation of the Linux kernel warned us that if we do not install the prerequisite packages first, we will fall in a trap that we can not turn back, so we should check the necessary packages seriously before we build the kernel.
 
 	\subsection{Runtime Errors}
 		\subsubsection{gem5}
 				SE (Syscall Emulation) mode runs smoothly.
 		\subsubsection{Kernel}
-	We must explicitly assign a memory size before we run the gem5 for ARM in FS mode. The size can not be larger than 256MB. We conject that this rule is designed for the emulation of embedded system serveral years ago when the RAM of the embedded system was relatively small. If the developer does not assign a memory size explicitly, the gem5 will use arbitrary size of the host computer which can be much larger than the target embedded system. Therefore, gem5 make this rule for ARM version.
+	We must explicitly assign a memory size before we run the gem5 for ARM in FS mode. The size can not be larger than 256MB. We conject that this rule is designed for the emulation of embedded system serveral years ago when the RAM of the embedded system was relatively small. If the developer does not assign a memory size explicitly, the gem5 will use arbitrary size of the host computer which can be much larger than the target embedded system. 
+
 
 \subsection{Methodology}
-We have no much experience in compiling a new-version Linux for ARM. During studying and trying, we countered various problems and wierd situations. To find the answesr, effective methods should be used.
+We have no much experience in compiling a Linux kernel for ARM. During studying and trying, we countered various problems and wierd situations. To find the answers, effective methods should be used.
 	\begin{enumerate}
 		\item
 		Classification: Tutorials.
@@ -138,7 +139,7 @@ to show the system information. The result screenshot is showed in \autoref{fig:
 \end{figure}
 	
 \section{Cooperation}
-This task can hardly be done in a divide-and-conquering way. We discuss and solve the problems together and get the ideal result eventually.
+This task can hardly be done in a divide-and-conquering way. We discussed and solved the problems together and got the ideal result eventually.
 
 \section{Acknowlegements}
 Prof. 陈文智 offered us this opportunity to do the experiment. Doctor 卢忠勇, who is the teahing assistant, guided us to do that. Doctor 谢斌 and doctor 叶敏娇 helped us to overcome some obstacles. Mark Chen, zxz and other friends on the Internet also enlightened us to finish this experiment. Thank you very much!
